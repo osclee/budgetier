@@ -173,8 +173,22 @@ function buildMonthData(
   return { budgets, transactions };
 }
 
+const PRODUCTION_DATABASE = "budgetier";
+
+function assertNotProduction(): void {
+  const db = process.env.COSMOS_DATABASE;
+  if (!db || db === PRODUCTION_DATABASE) {
+    throw new Error(
+      `Refusing to seed random test data into "${db ?? PRODUCTION_DATABASE}" — that's the production ` +
+        `database (COSMOS_DATABASE is unset or set to "${PRODUCTION_DATABASE}"). Set COSMOS_DATABASE to your ` +
+        `dev database (e.g. "budgetier-dev") before running seed:test-data.`
+    );
+  }
+}
+
 async function main(): Promise<void> {
   loadLocalSettings();
+  assertNotProduction();
 
   const categoriesResult = await container("categories").items.readAll<Category>().fetchAll();
   const categories = categoriesResult.resources;
