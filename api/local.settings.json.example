@@ -1,0 +1,21 @@
+{
+  "IsEncrypted": false,
+  "Values": {
+    "FUNCTIONS_WORKER_RUNTIME": "node",
+    "AzureWebJobsStorage": "",
+
+    "COSMOS_ENDPOINT": "https://YOUR-ACCOUNT.documents.azure.com:443/",
+    "COSMOS_KEY": "YOUR-COSMOS-PRIMARY-KEY",
+    "COSMOS_DATABASE": "budgetier-dev",
+
+    "JWT_SECRET": "generate-a-long-random-string-at-least-32-chars",
+
+    "ADMIN_USERNAME": "oscar",
+    "ADMIN_PASSWORD": "change-me-before-seeding",
+
+    "INSECURE_COOKIES": "true"
+  },
+  "Host": {
+    "CORS": "*"
+  }
+}
